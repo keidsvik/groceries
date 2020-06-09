@@ -1,22 +1,26 @@
 $(document).ready(function() {
   $("form#grocerylist").submit(function(event) {
+    event.preventDefault();
+
    let groceryitem1 = $("input#item1").val();
    let groceryitem2 = $("input#item2").val();
    let groceryitem3 = $("input#item3").val();
    let itemArray = [groceryitem1, groceryitem2, groceryitem3];
-   let sortedArray = itemArray.sort();
-   let upperCaseArray = sortedArray.toUpperCase//().split(" ,").sort();
- 
-  
-   console.log(upperCaseArray);
 
-  //sortedArray.forEach(function(element) {
-  // element.toUpperCase();
-  //});
 
-  console.log(sortedArray);
+   let upperCaseArray = [];
+   itemArray.forEach(function(element) {
+     upperCaseArray.push(element.toUpperCase());
+   });
 
-  event.preventDefault();
+   upperCaseArray.sort();
+
+   upperCaseArray.forEach(function (element) {
+     $("#completeList").append(`<li> ${element} </li>`);
+   });
+
+console.log(upperCaseArray);
+
 
   });
 });
